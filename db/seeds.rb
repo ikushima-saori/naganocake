@@ -7,7 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
  #↓データベースに登録済み
-# Admin.create(email: 'sample@example.com', password: '159357')
+ Admin.create(email: 'sample@example.com', password: '159357')
 
 # genre = Genre.create(name: "ケーキ")
 

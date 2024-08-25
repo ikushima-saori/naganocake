@@ -12,6 +12,11 @@ Rails.application.routes.draw do
   # Public側の記述
   root 'public/homes#top'
   get 'about', to: 'public/homes#about'
+
+  devise_scope :customer do
+    post 'customer/guest_sign_in', to: 'public/sessions#guest_sign_in'
+  end
+
   scope module: :public do
     resources :cart_items, only: [:index, :update, :destroy, :create] do
       delete 'clear', on: :collection

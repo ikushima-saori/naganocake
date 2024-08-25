@@ -2,6 +2,12 @@
 
 class Public::SessionsController < Devise::SessionsController
 
+  def guest_sign_in
+    customer = Customer.guest
+    sign_in customer
+    redirect_to root_path, notice: 'ゲストユーザーでログインしました。'
+  end
+
   def after_sign_in_path_for(resource)
     root_path
   end
@@ -9,12 +15,12 @@ class Public::SessionsController < Devise::SessionsController
   def after_sign_out_path_for(resource_or_scope)
     root_path
   end
-  
+
   before_action :reject_customer, only: [:create]
   protected
 
   # 会員の論理削除のための記述。退会後は、同じアカウントでは利用できない。
-  def reject_customer 
+  def reject_customer
     @customer  = Customer .find_by(email: params[:customer][:email])
     if @customer
       if @customer.valid_password?(params[:customer][:password]) && (@customer.is_active == false)

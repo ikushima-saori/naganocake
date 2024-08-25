@@ -60,4 +60,4 @@
       </div>
     </div>
       <div class="col-6 offset-1"><%= render "public/shared/links" %>からログインしてください</div>
-
+      <%= button_to "ゲストログイン", customer_guest_sign_in_path, method: :post, class: "btn btn-secondary" %>
